@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
  * @author joker
  * @create 2022-05-04
  */
-@Component//将当前类的对象创建使用维护交由spring容器管理
-@Aspect//将当前类标记为切面类
+//@Component//将当前类的对象创建使用维护交由spring容器管理
+//@Aspect//将当前类标记为切面类
 public class TimeAspect {
 
     @Around("execution(* com.cy.store.service.impl.*.*(..))")

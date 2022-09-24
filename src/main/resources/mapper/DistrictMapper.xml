@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cy.store.mapper.DistrictMapper">
 
-    <select id="findByParent" resultType="com.cy.store.bean.District">
+    <select id="findByParent" resultType="district">
         SELECT
             *
         FROM
@@ -12,12 +12,12 @@
         WHERE
             parent=#{parent}
         ORDER BY
-            code ASC
+            code
     </select>
 
     <select id="findNameByCode" resultType="string">
         SELECT
-            name
+            `name`
         FROM
             t_dict_district
         WHERE

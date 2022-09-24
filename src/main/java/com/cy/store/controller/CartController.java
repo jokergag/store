@@ -33,6 +33,13 @@ public class CartController extends BaseController{
         // 返回成功
         return new JsonResult<Void>(OK);
     }
+    @RequestMapping("delete/{cid}")
+    public JsonResult<Void> del(@PathVariable("cid") Integer cid,HttpSession session) {
+        Integer uid = getUidFromSession(session);
+        cartService.delByCid(cid,uid);
+        // 返回成功
+        return new JsonResult<Void>(OK);
+    }
 
     @GetMapping({"", "/"})
     public JsonResult<List<CartVO>> getVOByUid(HttpSession session) {

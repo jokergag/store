@@ -149,8 +149,8 @@
 								<div class="total-bar">
 									&nbsp;
 									<span class="pull-right">已选商品
-										<span id="all-count">1</span>件 总价¥
-										<span id="all-price">5298</span>元
+										<span id="all-count">0</span>件 总价¥
+										<span id="all-price" style="color: red">0</span>元
 									</span>
 								</div>
 							</div>
@@ -238,13 +238,9 @@
 						<img src="../images/index/android.png" alt="" class="lf" />
 					</div>
 					<div class="col-md-6">
-						<img src="../images/index/erweima.png">
+						<img src="../images/index/erweima.jpg">
 					</div>
 				</div>
-			</div>
-			<!-- 页面底部-备案号 #footer -->
-			<div class="col-md-12 text-center bottom">
-				Copyright © 2022 dnsc.cn All Rights Reserved 京ICP备08963888号-45 <a target="_blank" href="http://www.dnsc.cn/">圆心科技集团有限公司</a> 版权所有
 			</div>
 
 		</footer>
@@ -265,10 +261,10 @@
 					dataType: "JSON",
 					success: function(json) {
 						if (json.state == 200) {
-							alert("创建订单成功！");
+							alert("下单成功！");
 							location.href = "payment.html";
 						} else {
-							alert("创建订单失败！请重试或联系管理员" + json.message);
+							alert("创建订单失败！请联系管理员" + json.message);
 						}
 					},
 					error: function(xhr) {
@@ -290,7 +286,6 @@
 						let allCount = 0;
 						let allPrice = 0;
 						for (let i = 0; i < list.length; i++) {
-							console.log(list[i].title);
 							let tr = '<tr>'
 									+ '<td><img src="..#{image}collect.png" class="img-responsive" /></td>'
 									+ '<td><input type="hidden" name="cids" value="#{cid}" />#{title}</td>'
@@ -313,7 +308,11 @@
 						}
 						$("#all-count").html(allCount);
 						$("#all-price").html(allPrice);
-					}
+					},
+					error: function (xhr){
+						alert("当前未选择任何商品");
+						location.href = "cart.html";
+				}
 				});
 			}
 			function showAddressList() {

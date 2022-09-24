@@ -87,5 +87,7 @@
         t_cart.created_time DESC
     </select>
 
-
+<delete id="delByCid">
+    delete from t_cart where cid=#{cid}
+</delete>
 </mapper>

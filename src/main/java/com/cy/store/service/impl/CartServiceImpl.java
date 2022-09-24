@@ -62,6 +62,13 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public void delByCid(Integer cid,Integer uid) {
+        Cart cart = cartMapper.findByCid(cid);
+        if(cart.getUid() != uid) throw new AccessDeniedException("非法访问");
+        cartMapper.delByCid(cid);
+    }
+
+    @Override
     public List<CartVO> getVOByUid(Integer uid) {
         return cartMapper.findVOByUid(uid);
     }
@@ -90,7 +97,7 @@ public class CartServiceImpl implements CartService {
         // 调用updateNumByCid(cid, num, modifiedUser, modifiedTime)执行修改数量
         Integer rows = cartMapper.updateNumByCid(cid, num, username, now);
         if (rows != 1) {
-            throw new InsertException("修改商品数量时出现未知错误，请联系系统管理员");
+            throw new InsertException("修改商品数量时出现未知错误，请联系管理员");
         }
 
         // 返回新的数量
@@ -123,7 +130,7 @@ public class CartServiceImpl implements CartService {
         // 调用updateNumByCid(cid, num, modifiedUser, modifiedTime)执行修改数量
         Integer rows = cartMapper.updateNumByCid(cid, num, username, now);
         if (rows != 1) {
-            throw new InsertException("修改商品数量时出现未知错误，请联系系统管理员");
+            throw new InsertException("修改商品数量时出现未知错误，请联系管理员");
         }
 
         // 返回新的数量

@@ -41,7 +41,7 @@ public class UserTest {
     }
     @Test
     void find(){
-        User user = userMapper.findByUsername("张三");
+        User user = userMapper.findByUsername("3");
         System.out.println(user);
     }
     @Test

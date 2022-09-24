@@ -3,6 +3,8 @@ package com.cy.store.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ import java.util.List;
  * @create 2022-04-24
  */
 @Configuration
-public class LoginInterceptor implements WebMvcConfigurer {
+public class MyConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -35,8 +37,21 @@ public class LoginInterceptor implements WebMvcConfigurer {
         list.add("/users/login");
         list.add("/districts/**");
         list.add("/products/**");
+        list.add("/favicon.ico");
+        list.add("/index.html");
+        list.add("/");
 
         registry.addInterceptor(interceptor).addPathPatterns("/**").excludePathPatterns(list);
 
+    }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/image/avatar/**").addResourceLocations("file:D:/BaiduNetdiskDownload/SpringBoot-store/tools/photo/");
+    }
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        //第一个ws指定请求路径，第二个/ws指对应的视图名称，这里是/templates/ws.html
+        //访问地址http://localhost:8080/ws
+        registry.addViewController("/").setViewName("/index.html");
     }
 }

@@ -45,14 +45,14 @@
 					<div class="form-group">
 						<label class="col-md-3 control-label"> 密码：</label>
 						<div class="col-md-8">
-							<input name="password" type="text" class="form-control" placeholder="请输入密码">
+							<input name="password" type="password" class="form-control" placeholder="请输入密码">
 						</div>
 					</div>
 					<!--确认密码-->
 					<div class="form-group">
 						<label class="col-md-3 control-label"> 确认密码：</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control" placeholder="请再次输入密码">
+							<input type="password" class="form-control" placeholder="请再次输入密码">
 						</div>
 					</div>
 					<!--提交按钮-->
@@ -128,31 +128,27 @@
 						<img src="../images/index/android.png" alt="" class="lf" />
 					</div>
 					<div class="col-md-6">
-						<img src="../images/index/erweima.png">
+						<img src="../images/index/erweima.jpg">
 					</div>
 				</div>
 			</div>
-			<!-- 页面底部-备案号 #footer -->
-			<div class="col-md-12 text-center bottom">
-				Copyright © 2022 dnsc.cn All Rights Reserved 京ICP备08963888号-45 <a target="_blank" href="http://www.dnsc.cn/">圆心科技集团有限公司</a> 版权所有
-			</div>
+
 		</footer>
 		<!--页脚结束-->
 
 	<script type="text/javascript">
 			$("#btn-reg").click(function() {
-				console.log($("#form-reg").serialize());
 				$.ajax({
 					url: "/users/reg",
 					type: "POST",
 					data: $("#form-reg").serialize(),
 					dataType: "json",
-					success: function(json) {
-						if (json.state == 200) {
+					success: function(data) {
+						if (data.state == 200) {
 							alert("注册成功！");
 							location.href = "login.html";
 						} else {
-							alert("注册失败！" + json.message);
+							alert("注册失败！" + data.message);
 						}
 					}
 				});

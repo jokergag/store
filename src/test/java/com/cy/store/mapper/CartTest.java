@@ -28,6 +28,10 @@ public class CartTest {
         cart.setPrice(4L);
         Integer rows = cartMapper.insert(cart);
     }
+    @Test
+    public void del() {
+        cartMapper.delByCid(1);
+    }
 
     @Test
     public void updateNumByCid() {

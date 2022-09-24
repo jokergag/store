@@ -15,9 +15,10 @@ public interface CartService {
     List<CartVO> getVOByUid(Integer uid);
 
     Integer addNum(Integer cid, Integer uid, String username);
-    Integer reduceNum(Integer cid, Integer uid, String username);
 
+    Integer reduceNum(Integer cid, Integer uid, String username);
 
     List<CartVO> getVOByCids(Integer uid, Integer[] cids);
 
+    void delByCid(Integer cid,Integer uid);
 }

@@ -18,6 +18,10 @@ public class CartTest {
     private CartService cartService;
 
     @Test
+    public void del() {
+     cartService.delByCid(17,16);
+    }
+    @Test
     public void addToCart() {
         try {
             Integer uid = 12;
